@@ -20,6 +20,7 @@ class Settings(BaseSettings):
         default="postgresql+psycopg://ms_ai_classifier:ms_ai_classifier@postgres:5432/ms_ai_classifier",
         alias="DATABASE_URL",
     )
+    database_schema: str = Field(default="ai_classifier", alias="DATABASE_SCHEMA")
     rabbitmq_url: str = Field(default="amqp://guest:guest@rabbitmq:5672/", alias="RABBITMQ_URL")
     rabbitmq_exchange: str = Field(default="mi_cartera_events", alias="RABBITMQ_EXCHANGE")
     rabbitmq_queue: str = Field(default="ms_ai_classifier_queue", alias="RABBITMQ_QUEUE")
@@ -30,6 +31,7 @@ class Settings(BaseSettings):
     openai_api_key: str | None = Field(default=None, alias="OPENAI_API_KEY")
     openai_model: str = Field(default="gpt-5", alias="OPENAI_MODEL")
     openai_max_pdf_pages: int = Field(default=12, alias="OPENAI_MAX_PDF_PAGES")
+    classification_review_threshold: float = Field(default=0.7, alias="CLASSIFICATION_REVIEW_THRESHOLD")
 
     files_status_callback_url: str | None = Field(default=None, alias="FILES_STATUS_CALLBACK_URL")
     transactions_status_callback_url: str | None = Field(
